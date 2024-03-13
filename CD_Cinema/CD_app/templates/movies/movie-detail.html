@@ -1,86 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="./css/owl.carousel.min.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body navbar-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand text-warning" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Movies</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  User
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active">Sign Up</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active">Login</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+{% extends '../base.html' %}
 
-      <main>
-        <div class="movie-detail">
-            <div class="cover" style="background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(./images/render-planet.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
-                <div class="container">
-                    <h1>movieName</h1>
-                    <p>Director: <strong>directorName</strong>Genre: <strong>genreName</strong></p>
-                    <p>Rating: <strong>7.8</strong></p>
-                    <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate voluptas ullam repellendus et temporibus est, voluptates iure commodi consequuntur, totam soluta impedit eveniet. Vero voluptatem, earum numquam in impedit quasi?</p>
-                    <a href="#movie" class="btn btn-light">Watch</a>
-                </div>
-            </div>
-            <div id="movie">
-                <iframe width="100%^" height="500" src="https://www.youtube.com/embed/41ak2jr55fE?si=n5ZMyHDNWOpngqUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+{% block title %}movieName{% endblock %}
 
-      <footer class="py-3 my-4">
-        <div class="container">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-              </ul>
-              <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
-        </div>
-      </footer>
-
-      <script src="./js/jquery.min.js"></script>
-      <script src="./js/owl.carousel.min.js"></script>
-      <script src="./js/carousel.js"></script>
-      <script src="./js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% block content %}
+{% if user.is_authenticated %}
+<div class="movie-detail">
+  <div class="cover" style="background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(./images/render-planet.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
+      <div class="container">
+          <h1>movieName</h1>
+          <p>Director: <strong>directorName</strong>Genre: <strong>genreName</strong></p>
+          <p>Rating: <strong>7.8</strong></p>
+          <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate voluptas ullam repellendus et temporibus est, voluptates iure commodi consequuntur, totam soluta impedit eveniet. Vero voluptatem, earum numquam in impedit quasi?</p>
+          <a href="#movie" class="btn btn-light">Watch</a>
+      </div>
+  </div>
+  <div id="movie">
+      <iframe width="100%^" height="500" src="https://www.youtube.com/embed/41ak2jr55fE?si=n5ZMyHDNWOpngqUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</div>
+{% else %}
+<div class="continer mt-5 mb-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="alert alert-warning" role="alert">
+        If you watch movie, sign up or login into the system
+      </div>
+      <a href="#" class="btn btn-warning">Sign Up</a>
+      <a href="#" class="btn btn-outline-warning"></a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
